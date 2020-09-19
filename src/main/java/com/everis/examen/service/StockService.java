@@ -10,6 +10,6 @@ public interface StockService {
 	
 	public List<Stock> listAll();
 	public Stock findById(Integer id) throws ResourceNotFoundException;
-	public Stock save(Stock stock) throws BusinessException;
-	
+	public Stock save(Stock stocks) ;
+	public List<Stock> saveCollection(List<Stock> stocks) throws BusinessException;
 }

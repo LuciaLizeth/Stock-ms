@@ -27,14 +27,22 @@ public class StockServiceImpl implements StockService{
 	}
 	
 	@Override
-	public Stock save(Stock stock) throws BusinessException {
-		if(stock.getQuantity() == 0) {
-			throw new BusinessException("Quantity of product cannot be 0");
-		}
-		else if (stock.getQuantity() < 0) {
-			throw new BusinessException("Quantity of product cannot be less than 0");
-		}
+	public Stock save(Stock stock){
 		return stockRepository.save(stock);
+	}
+	
+	@Override
+	public List<Stock> saveCollection(List<Stock> stocks) throws BusinessException {
+		for (Stock stock : stocks) {
+			if(stock.getQuantity() == 0) {
+				throw new BusinessException("Quantity of product cannot be 0");
+			}
+			else if (stock.getQuantity() < 0) {
+				throw new BusinessException("Quantity of product cannot be less than 0");
+			}
+			stockRepository.save(stock);
+		}
+		return stocks;
 	}
 	
 }

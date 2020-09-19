@@ -29,13 +29,9 @@ public class StockController {
 	}
 	
 	@PostMapping("stock/save")
-	public SaveStockResponseDto save(@RequestBody SaveStockRequestDto saveStockRequestDto) throws BusinessException {
+	public List<SaveStockResponseDto> save(@RequestBody List<SaveStockRequestDto> saveStockRequestDtos) throws BusinessException {
 		return StockMapper.INSTANCE
-				.toStockSaveResponseDto(stockService.save(StockMapper.INSTANCE.toEntity(saveStockRequestDto)));
+				.toStockSaveResponseDtos(stockService.saveCollection(StockMapper.INSTANCE.toEntities(saveStockRequestDtos)));
 	}
 	
-	@PostMapping("stock/save2")
-	public Stock save2(@RequestBody Stock saveStockRequestDto) throws BusinessException {
-		return stockService.save(saveStockRequestDto);
-	}
 }

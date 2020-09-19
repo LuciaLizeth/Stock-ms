@@ -2,6 +2,7 @@ package com.everis.examen.mapper;
 
 import java.util.List;
 
+import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -19,5 +20,9 @@ public interface StockMapper {
 	public List<StockDto> map(List<Stock> stocks);
 	
 	public Stock toEntity(SaveStockRequestDto saveStockRequestDto);
-	public SaveStockResponseDto toStockSaveResponseDto(Stock stock);
+	
+	@BeanMapping(resultType = Stock.class)
+	public List<Stock> toEntities(List<SaveStockRequestDto> saveStockRequestDtos);
+	
+	public List<SaveStockResponseDto> toStockSaveResponseDtos(List<Stock> stocks);
 }
