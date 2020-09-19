@@ -9,7 +9,10 @@ import com.everis.examen.exception.ResourceNotFoundException;
 public interface StockService {
 	
 	public List<Stock> listAll();
+	
 	public Stock findById(Integer id) throws ResourceNotFoundException;
+	public Stock findByProductId(Integer productId) throws ResourceNotFoundException;
+	
 	public Stock save(Stock stocks) ;
 	public List<Stock> saveCollection(List<Stock> stocks) throws BusinessException;
 }

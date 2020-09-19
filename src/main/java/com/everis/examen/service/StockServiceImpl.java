@@ -27,6 +27,11 @@ public class StockServiceImpl implements StockService{
 	}
 	
 	@Override
+	public Stock findByProductId(Integer productId) throws ResourceNotFoundException {
+		return stockRepository.findByProductId(productId);
+	}
+	
+	@Override
 	public Stock save(Stock stock){
 		return stockRepository.save(stock);
 	}
